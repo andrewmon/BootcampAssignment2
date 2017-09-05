@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body ng-app="directoryApp">
+  <div class="container">
+    <div class="row">
+      <h1>UF Directory App</h1>
+    </div>
+    <div class="row" ng-controller="ListingsController">
+      <div class="col-md-6">
+        <div class="input-group" id="searchBar">
+          <!--
+
+          Implement a way to filter through listings using the search bar
+
+        -->
+        <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
+        <input type="text" class = "form-control"  placeholder="Search" ng-model="query"/>
+      </div>
+      <div class="tableWrapper">
+        <table class="table table-striped table-hover">
+          <tr>
+            <th>Code</th>
+            <th>Building Name</th>
+            <th></th>
+          </tr>
+
+          <tr ng-repeat="listing in listings | filter: query" ng-click="showDetails($index)" data-toggle="modal">
+            <td> {{ listing.code }} </td>
+            <td> {{ listing.name }} </td>
+             <td class="btn btn-info btn-lg" ng-click="deleteListing($index)"><span class="glyphicon glyphicon-remove-circle">
+             </span>
+             <td class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-info-sign">
+             </span>
+           </td>
+          </tr>
+
+        </table>
+      </div>
+      <!--
+      Write an HTML form that adds new listings to the directory
+    -->
+    <form novalidate class="simple-form">
+      <h3>Add new entry: </h3>
+      <input type="text" name = "code" class="form-control" ng-model="code" placeholder="Building Code"/><br />
+      <input type="text" name = "name" class="form-control" ng-model="name" placeholder="Name"/><br />
+      <input type="text" name = "address" class="form-control" ng-model="address" placeholder="Address" /><br />
+      <button class="btn btn-primary" input type = "submit" class="form-control" ng-click="addListing()">Add Listing</button>
+    </form>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Detailed Information</h4>
+          </div>
+          <div class="modal-body">
+            <h2>{{detailedInfo.name}}</h2>
+            <p>Address: {{detailedInfo.address}}</p>
+            <p>Building Code: {{detailedInfo.code}}</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+<script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+<script src="app.js"></script>
+<script src="listingController.js"></script>
+<script src="listingFactory.js"></script>
+</body>
+</html>

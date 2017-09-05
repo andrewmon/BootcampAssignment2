@@ -1,0 +1,38 @@
+#searchBar {
+  margin: 15px 10px;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.wrap {
+    width: 352px;
+}
+
+.wrap table {
+    width: 300px;
+    table-layout: fixed;
+}
+
+table tr td {
+    padding: 5px;
+    border: 1px solid #eee;
+    word-wrap: break-word;
+}
+
+td:nth-child(odd) {
+    background-color: #ffcf93;
+}
+
+td:nth-child(even) {
+    background-color: #93e6ff;
+}
+
+th:nth-child(odd) {
+    background-color: #fdc14e;
+}
+
+th:nth-child(even) {
+    background-color: #69c1f6;
